@@ -1,15 +1,3 @@
-## **Visão Geral**
-O **dotnet-authentication-app-plugin** adiciona em uma stack a capacidade de verificar se um usuário possui acesso a um determinado recurso restrito trazendo segurança para sua API.
-
-## **Uso**
-
-### **Pré-requisitos**
-Para utilizar este plugin é necessário ter uma Stack DotNET criada pelo `CLI` da `StackSpot`, que você pode baixar [**aqui**](https://stackspot.com/).
-
-Também ter instalado:
-- .NET 5 ou 6.
-- O template `dotnet-api-template` ou o `dotnet-worker-template` deverão estar aplicados para que seja possível utilizar este plugin.
-
 ### **Inputs**
 Os inputs necessários para utilizar o plugin são:  
 
@@ -81,6 +69,3 @@ services.AddSwaggerGen(c =>
 });
 ...
 ```
-
-### **Implementação**
-- [**Nuget**](https://www.nuget.org/packages/StackSpot.Authentication/)

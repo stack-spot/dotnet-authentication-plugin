@@ -1,0 +1,73 @@
+name: dotnet-authentication-app-plugin
+description: Plugin para configurar a autenticação em seu projeto.
+types:
+  - app
+inputs:
+  - label: Set Authentication Url
+    type: text
+    name: url
+    required: false
+    default: ""
+
+computed-inputs:
+  base_path: "{% if global_computed_inputs.src_base_path is defined and global_computed_inputs.src_base_path != '' %}{{global_computed_inputs.src_base_path}}{% else %}{{'.'}}{% endif %}"
+
+hooks:
+#package
+  - type: run
+    trigger: before-render
+    working-dir: "{{computed_inputs.base_path}}/src/{{project_name}}.Application"
+    commands:
+      - dotnet add package StackSpot.Authentication
+#dependencyinjection
+  - type: edit
+    trigger: before-render
+    path: "{{computed_inputs.base_path}}/src/{{project_name}}.Application/Common/StackSpot/DependencyInjection.cs"
+    changes:
+      - search:
+          string: "using"
+          insert-before:
+            value: "using StackSpot.Authentication;"
+          when:
+            not-exists: "using StackSpot.Authentication;"
+      - search:
+          string: "return services"
+          insert-before:
+            snippet: snippets/src/Application/services.txt
+          when:
+            not-exists: "services.AddTokenAuthentication(url);"
+      - search:
+          string: "return app"
+          insert-before:
+            snippet: snippets/src/Application/app.txt
+          when:
+            not-exists: "app.UseAuthentication();"
+#format
+  - type: run
+    trigger: after-render
+    working-dir: "{{computed_inputs.base_path}}/src/{{project_name}}.Application"
+    commands:
+      -  dotnet dotnet-format --include-generated
+
+displayName: Authentication
+
+picture: "plugin.png"
+
+category: Backend
+
+compatibility:
+  - net5.0
+  - net6.0
+
+about: docs/about.md
+
+usage: docs/usage.md
+
+useCase: docs/useCase.md
+
+implementation: docs/implementation.md
+
+technologies: 
+  - .NET
+  - C#
+  - Api
