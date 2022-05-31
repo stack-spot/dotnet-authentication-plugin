@@ -1,5 +1,5 @@
 ## **Visão Geral**
-O **dotnet-authentication-app-plugin** adiciona em uma stack a capacidade de verificar se um usuário possui acesso a um determinado recurso restrito trazendo segurança para sua API.
+O **dotnet-authentication-plugin** adiciona em uma stack a capacidade de verificar se um usuário possui acesso a um determinado recurso restrito trazendo segurança para sua API.
 
 ## **Uso**
 

@@ -1,4 +1,4 @@
-name: dotnet-authentication-app-plugin
+name: dotnet-authentication-plugin
 description: Plugin para configurar a autenticação em seu projeto.
 types:
   - app
@@ -63,7 +63,7 @@ about: docs/about.md
 
 usage: docs/usage.md
 
-useCase: docs/useCase.md
+useCase: docs/use-case.md
 
 implementation: docs/implementation.md
 
